@@ -18,7 +18,7 @@ namespace BL.Services
             {
                 TypeDiscriminate.MoreZero => CalculateMoreZero(squareEquation, discriminate),
                 TypeDiscriminate.EqualsZero => CalculateEqualsZero(squareEquation),
-                _ => new SquareEquationResult { EquationSolutions = EquationSolutions.NoSolutions },
+                _ => CalculateLessZero(squareEquation, discriminate),
             };
         }
 
@@ -26,8 +26,17 @@ namespace BL.Services
         {
             return new SquareEquationResult
             {
-                X1 = (-squareEquation.B + Math.Sqrt(discriminate.Result)) / (2 * squareEquation.A),
-                X2 = (-squareEquation.B - Math.Sqrt(discriminate.Result)) / (2 * squareEquation.A),
+                X1 = ((-squareEquation.B + Math.Sqrt(discriminate.Result)) / (2 * squareEquation.A)).ToString(),
+                X2 = ((-squareEquation.B - Math.Sqrt(discriminate.Result)) / (2 * squareEquation.A)).ToString(),
+                EquationSolutions = EquationSolutions.TwoSolutions
+            };
+        }
+        private static SquareEquationResult CalculateLessZero(SquareEquation squareEquation, Discriminate discriminate)
+        {
+            return new SquareEquationResult
+            {
+                X1 = ((-squareEquation.B + Math.Sqrt(-discriminate.Result)) / (2 * squareEquation.A)).ToString() + " * i",
+                X2 = ((-squareEquation.B - Math.Sqrt(-discriminate.Result)) / (2 * squareEquation.A)).ToString() + " * i",
                 EquationSolutions = EquationSolutions.TwoSolutions
             };
         }
@@ -35,7 +44,7 @@ namespace BL.Services
         {
             return new SquareEquationResult
             {
-                X1 = (-squareEquation.B) / (2 * squareEquation.A),
+                X1 = ((-squareEquation.B) / (2 * squareEquation.A)).ToString(),
                 EquationSolutions = EquationSolutions.OneSolution
             };
         }
