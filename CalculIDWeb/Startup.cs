@@ -29,8 +29,14 @@ namespace CalculIDWeb
             services.AddDbContext<CalcContext>(
                 options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CalcDB")));
-
             services.AddTransient<ICalculationService, CalculationService>();
+
+            /*
+            
+            Create Conflict
+
+             */
+
 
             services.AddControllersWithViews();
         }
