@@ -1,0 +1,12 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Equation
+
+@using (Html.BeginForm())
+{
+    <div>@Html.LabelFor(m => m.A)@Html.EditorFor(m => m.A)</div>
+    <div>@Html.LabelFor(m => m.B)@Html.EditorFor(m => m.B)</div>
+    <div>@Html.LabelFor(m => m.C)@Html.EditorFor(m => m.C)</div>
+    <button type="submit">Найти корни</button>
+}
